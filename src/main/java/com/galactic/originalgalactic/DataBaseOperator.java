@@ -1,7 +1,24 @@
 package com.galactic.originalgalactic;
 
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import java.io.*;
+
 import java.sql.*;
 import java.util.Scanner;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Scanner;
+
+
+
+
 
 public class DataBaseOperator {
     public Connection connection;
@@ -45,24 +62,7 @@ public class DataBaseOperator {
 
 
     public void createTable(){
-        System.out.print("Create Table, Enter the table name: ");
-        Scanner sc = new Scanner(System.in);
-        String tableName = sc.nextLine();
-        String createTableSQL = "CREATE TABLE IF NOT EXISTS "+tableName+" (" +
-                "StudentId INTEGER PRIMARY KEY," +
-                "RollNo INTEGER NOT NULL,"+
-                "MobileNo INTEGER NOT NULL," +
-                "Name TEXT NOT NULL," +
-                ");";
 
-        try {
-            Statement stmt = connection.createStatement();
-            // Create the table
-            stmt.execute(createTableSQL);
-            System.out.println("Table created successfully.");
-        } catch (SQLException e) {
-            System.err.println(e.getMessage());
-        }
     }
 
 
@@ -84,19 +84,28 @@ public class DataBaseOperator {
 
 
 
+    public void CheckFileName(){
+        System.out.print("enter the excel file path");
+        Scanner ssc = new Scanner(System.in);
+        File excelFile2 = new File(ssc.nextLine());
+        String fileName = excelFile2.getName();
+        System.out.println(fileName);
+    }
+
 
 }
 
-/*
+
 class Temporary{
     public static void main(String[] args){
         DataBaseOperator d = new DataBaseOperator();
-        Connection hello = d.startConnect();
-
-      p.createTable();
-
-        d.deleteTable();
-        d.closeConnection();
+//        Connection hello = d.startConnect();
+//
+//        d.createTable();
+//
+//        d.deleteTable();
+//        d.closeConnection();
+        d.CheckFileName();
     }
 }
-*/
+
