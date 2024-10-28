@@ -1,14 +1,13 @@
 package com.galactic.originalgalactic;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.DriverManager;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.Scanner;
 
-
-class Perform {
+public class DataBaseOperator {
     public Connection connection;
+
+
+
     public Connection startConnect(){
         String filePath = "src/main/resources/com/galactic/originalgalactic/CollegeLibrary.db";
         String url = "jdbc:sqlite:" + filePath;
@@ -26,35 +25,34 @@ class Perform {
                 System.out.println("Closed caused pointed null");
             }
         }catch(SQLException e){
-
             System.out.println(e.getMessage());
         }
-
-
         return connection;
     }
-;
+
+
+
     public void closeConnection(){
         try {
-            if(connection != null ){
-                connection.close();
-                System.out.println("Closed Successfully");
-            }
+            connection.close();
+            System.out.println("Closed Successfully");
         }catch(SQLException e){
 
             System.out.println(e.getMessage());
         }
     }
 
+
+
     public void createTable(){
-        System.out.print("Enter the table name: ");
+        System.out.print("Create Table, Enter the table name: ");
         Scanner sc = new Scanner(System.in);
         String tableName = sc.nextLine();
         String createTableSQL = "CREATE TABLE IF NOT EXISTS "+tableName+" (" +
                 "StudentId INTEGER PRIMARY KEY," +
-                "FirstName TEXT NOT NULL," +
-                "LastName TEXT NOT NULL," +
-                "BirthDate TEXT" +
+                "RollNo INTEGER NOT NULL,"+
+                "MobileNo INTEGER NOT NULL," +
+                "Name TEXT NOT NULL," +
                 ");";
 
         try {
@@ -68,16 +66,37 @@ class Perform {
     }
 
 
+
+    public void deleteTable(){
+        System.out.print("Deleting table, Enter the table name: ");
+        Scanner sc = new Scanner(System.in);
+        String tableName = sc.nextLine();
+        String deleteTableSQL = "DROP TABLE IF EXISTS "+tableName+" ;";
+        try {
+
+            Statement stmt = connection.createStatement();
+            stmt.execute(deleteTableSQL);
+            System.out.println("Deleted Table " + tableName);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+
+
 }
 
-
-public class Temporary {
+/*
+class Temporary{
     public static void main(String[] args){
-        Perform p = new Perform();
-        Connection hello = p.startConnect();
+        DataBaseOperator d = new DataBaseOperator();
+        Connection hello = d.startConnect();
 
-        p.createTable();
+      p.createTable();
 
-        p.closeConnection();
+        d.deleteTable();
+        d.closeConnection();
     }
 }
+*/
