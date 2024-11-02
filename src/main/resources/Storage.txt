@@ -1,0 +1,65 @@
+<VBox id="DepartmentDetail" prefHeight="200.0" prefWidth="200.0" styleClass="departmentData">
+                     <FlowPane.margin>
+                        <Insets bottom="16.0" right="16.0" />
+                     </FlowPane.margin>
+                     <children>
+                        <VBox prefHeight="150.0" prefWidth="200.0" styleClass="DD_Info">
+                           <children>
+                              <Label text="Class Name" textFill="WHITE">
+                                 <VBox.margin>
+                                    <Insets bottom="4.0" />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font name="System Bold" size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label prefWidth="129.0" text="No. of Students " textFill="WHITE">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label text="No. of Class" textFill="WHITE">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets bottom="32.0" left="32.0" right="32.0" top="32.0" />
+                           </padding>
+                        </VBox>
+                        <VBox id="DD_Button" prefHeight="50.0" prefWidth="200.0" styleClass="DD_Button" />
+                     </children>
+                  </VBox>
+
+
+for(int i = 0; i < elements.length; i++){
+    java container = new vbox;
+    java detail = new vbox;
+    java button = new vbox;
+
+    java label1 = new label(DepartmentTagValue); //String
+    java label2 = new label("no. of student: " + studentTagValue)); //int
+    java label3 = new label("no. of class: " + classTagValue); //int
+
+    detail.add(label1);
+    detail.add(label2);
+    detail.add(label3);
+    detail.css(
+
+    )
+
+    java buttonText = new label;
+    button.add(buttonText);
+    button.css(
+
+    )
+
+    container.add(detail, button);
+    container.css(
+
+    )
+}

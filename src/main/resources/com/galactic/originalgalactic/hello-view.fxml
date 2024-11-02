@@ -16,7 +16,7 @@
 
 
    <children>
-      <Label text="Galactic">
+      <Label text="Galactic" >
          <font>
             <Font name="Arial Bold" size="48.0" />
          </font>

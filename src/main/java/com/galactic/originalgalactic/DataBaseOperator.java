@@ -11,10 +11,6 @@ import java.util.Scanner;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.Scanner;
-
-
-
 
 
 public class DataBaseOperator {
@@ -66,7 +62,7 @@ public class DataBaseOperator {
 
 //SYCS_A
 //C:\Users\rajveer\OneDrive\Documents\SyCS_A.xlsx
-        String createTableSQL = "CREATE TABLE IF NOT EXISTS SYBscCS (" +
+        String createTableSQL = "CREATE TABLE IF NOT EXISTS TYBScCS(" +
                 "StudentId VARCHAR(42) PRIMARY KEY," +
                 "RollNo VARCHAR(42) ,"+
                 "MobileNo VARCHAR(42) ," +
@@ -98,7 +94,7 @@ public class DataBaseOperator {
                 System.out.println("loop started");
                 Row row = sheet.getRow(i);
                 int cellCount = row.getPhysicalNumberOfCells();
-                String addingQuery = "INSERT INTO SYBscCS (StudentId, RollNo, MobileNo, Name) VALUES (?, ?, ?, ?)";
+                String addingQuery = "INSERT INTO TYBScCS (StudentId, RollNo, MobileNo, Name) VALUES (?, ?, ?, ?)";
                 PreparedStatement smt = connection.prepareStatement(addingQuery);
                 for(int j = 0; j < cellCount; j++){
                     Cell cell = row.getCell(j);
@@ -173,7 +169,8 @@ class Temporary{
         DataBaseOperator d = new DataBaseOperator();
         Connection hello = d.startConnect();
 
-        d.excelToDataBase();
+//        d.excelToDataB+
+//        ase();
 
 //        d.deleteTable();
         d.closeConnection();

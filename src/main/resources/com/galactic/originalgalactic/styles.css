@@ -1,11 +1,13 @@
 
 .TimeAndDate{
+
     -fx-background-color: black;
     -fx-background-radius: 28px;
     -fx-border-radius: 28px;
 }
 
 .menuBar{
+
     -fx-background-color: black;
     -fx-background-radius: 40px;
     -fx-border-radius: 40px;
@@ -20,6 +22,7 @@
 
 
  .gradient_button {
+
     -fx-background-radius: 28px;
     -fx-border-radius: 28px;
 
@@ -27,10 +30,10 @@
     -fx-background-image: url("image.png");
     -fx-background-size: cover;
 
-    -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #7000FF, #EA03FF, #EA03FF);
+
     -fx-background-insets: 0, 0;
 
-    -fx-transition: -fx-scale-x 0.3s ease-in-out, -fx-scale-y 0.3s ease-in-out;
+
  }
 
 /*Scaling effect
@@ -53,6 +56,8 @@
 
 
 .plain_button{
+
+
     -fx-background-color: black;
     -fx-background-radius: 28px;
     -fx-translate-y: -3px; /* Move up by 10px */
@@ -83,4 +88,27 @@
     -fx-transition: -fx-translate-y 0.5s ease-in-out;
 }
 
+.scrollPaneView{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
 
+.departmentData{
+    -fx-background-color: Black;
+    -fx-background-radius: 36px;
+    -fx-border-radius: 36px;
+    -fx-border-color: black;
+    -fx-border-width: 0.5px;
+}
+
+.DD_Button{
+    -fx-background-color: white;
+    -fx-background-radius: 0px 0px 36px 36px;
+}
+
+.addDepartment{
+    -fx-background-color: #808080;
+    -fx-background-radius: 36px;
+    -fx-border-radius: 36px;
+    -fx-border-width: 0.5px;
+}
