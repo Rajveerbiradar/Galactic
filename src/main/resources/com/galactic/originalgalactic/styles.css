@@ -1,13 +1,11 @@
 
 .TimeAndDate{
-
     -fx-background-color: black;
     -fx-background-radius: 28px;
     -fx-border-radius: 28px;
 }
 
 .menuBar{
-
     -fx-background-color: black;
     -fx-background-radius: 40px;
     -fx-border-radius: 40px;
@@ -20,21 +18,13 @@
     -fx-border-radius: 40px;
 }
 
-
- .gradient_button {
-
+.gradient_button {
     -fx-background-radius: 28px;
     -fx-border-radius: 28px;
-
-
-    -fx-background-image: url("image.png");
+    -fx-background-image: url("Images/gradientBackGroundImage.png");
     -fx-background-size: cover;
-
-
     -fx-background-insets: 0, 0;
-
-
- }
+}
 
 /*Scaling effect
     -fx-scale-x: 1.05;
@@ -94,6 +84,7 @@
 }
 
 .departmentData{
+
     -fx-background-color: Black;
     -fx-background-radius: 36px;
     -fx-border-radius: 36px;
@@ -102,8 +93,10 @@
 }
 
 .DD_Button{
+    -fx-text-fill: Black;
     -fx-background-color: white;
     -fx-background-radius: 0px 0px 36px 36px;
+    -fx-border-radius: 0px 0px 36px 36px;
 }
 
 .addDepartment{
@@ -111,4 +104,13 @@
     -fx-background-radius: 36px;
     -fx-border-radius: 36px;
     -fx-border-width: 0.5px;
+}
+
+.cameraTop{
+    -fx-background-color: #000000;
+}
+
+.fullVideoContainer{
+    -fx-border-radius: 16;
+    -fx-background-radius: 16;
 }

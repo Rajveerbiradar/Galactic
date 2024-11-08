@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<DepartmentDataBoxes>
+    <DepartmentDataBox>
+        <DepartmentName> BSc.CS </DepartmentName>
+        <NoOfStudents> 309 </NoOfStudents>
+    </DepartmentDataBox>
+    <DepartmentDataBox>
+        <DepartmentName> BSc.IT </DepartmentName>
+        <NoOfStudents> 219 </NoOfStudents>
+    </DepartmentDataBox>
+    <DepartmentDataBox>
+        <DepartmentName> BSc </DepartmentName>
+        <NoOfStudents> 163 </NoOfStudents>
+    </DepartmentDataBox>
+    <DepartmentDataBox>
+        <DepartmentName> BCom </DepartmentName>
+        <NoOfStudents> 600 </NoOfStudents>
+    </DepartmentDataBox>
+    <DepartmentDataBox>
+        <DepartmentName> BMM </DepartmentName>
+        <NoOfStudents> 172 </NoOfStudents>
+    </DepartmentDataBox>
+</DepartmentDataBoxes>
+

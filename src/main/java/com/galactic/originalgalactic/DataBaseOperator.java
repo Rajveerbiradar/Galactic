@@ -169,7 +169,7 @@ class Temporary{
         DataBaseOperator d = new DataBaseOperator();
         Connection hello = d.startConnect();
 
-//        d.excelToDataB+
+        d.excelToDataBase();
 //        ase();
 
 //        d.deleteTable();
