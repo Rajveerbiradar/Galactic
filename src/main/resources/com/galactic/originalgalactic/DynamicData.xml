@@ -1,25 +1,94 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <DepartmentDataBoxes>
+                
+    
+    
     <DepartmentDataBox>
+                                
+        
+        
         <DepartmentName> BSc.CS </DepartmentName>
-        <NoOfStudents> 309 </NoOfStudents>
+                                
+        
+        
+        <Year> 2022-23 </Year>
+                            
+    
+    
     </DepartmentDataBox>
+                
+    
+    
     <DepartmentDataBox>
+                                
+        
+        
         <DepartmentName> BSc.IT </DepartmentName>
-        <NoOfStudents> 219 </NoOfStudents>
+                                
+        
+        
+        <Year> 219 </Year>
+                            
+    
+    
     </DepartmentDataBox>
+                
+    
+    
     <DepartmentDataBox>
+                                
+        
+        
         <DepartmentName> BSc </DepartmentName>
-        <NoOfStudents> 163 </NoOfStudents>
+                                
+        
+        
+        <Year> 163 </Year>
+                            
+    
+    
     </DepartmentDataBox>
+                
+    
+    
     <DepartmentDataBox>
+                                
+        
+        
         <DepartmentName> BCom </DepartmentName>
-        <NoOfStudents> 600 </NoOfStudents>
+                                
+        
+        
+        <Year> 2023-24 </Year>
+                            
+    
+    
     </DepartmentDataBox>
+            
+    
+    
     <DepartmentDataBox>
-        <DepartmentName> BMM </DepartmentName>
-        <NoOfStudents> 172 </NoOfStudents>
+                        
+        
+        <DepartmentName>BSc.CS</DepartmentName>
+                        
+        
+        <Year>2023-24</Year>
+                    
+    
+    </DepartmentDataBox>
+        
+    
+    <DepartmentDataBox>
+                
+        <DepartmentName>BSc.CS</DepartmentName>
+                
+        <Year>2023-24</Year>
+            
+    </DepartmentDataBox>
+    
+    <DepartmentDataBox>
+        <DepartmentName>BSc.CS</DepartmentName>
+        <Year>2023-24</Year>
     </DepartmentDataBox>
 </DepartmentDataBoxes>
-

@@ -13,7 +13,7 @@ import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.core.MatOfByte;
 import java.io.ByteArrayInputStream;
 
-public class TestCaseCameraApp extends Application {
+public class CameraController extends Application {
     static { System.loadLibrary(Core.NATIVE_LIBRARY_NAME); }
 
     private VideoCapture capture;
@@ -75,7 +75,4 @@ public class TestCaseCameraApp extends Application {
         }
     }
 
-    public static void main(String[] args) {
-        launch(args);
-    }
 }

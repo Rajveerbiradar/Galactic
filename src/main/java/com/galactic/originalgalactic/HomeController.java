@@ -5,7 +5,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 
-public class HelloController {
+public class HomeController {
 
     @FXML
     private Label theDate;
@@ -21,6 +21,9 @@ public class HelloController {
     }
 
 //     This method is called after the FXML elements are loaded
+
+    DataBaseOperator dataBaseOperator;
+
     @FXML
     public void initialize() {
         // Create a rectangle with rounded corners
@@ -31,6 +34,16 @@ public class HelloController {
         // Set the clipping shape to the AnchorPane
 
         imageButton.setClip(rect);
+
+        dataBaseOperator = new DataBaseOperator();
+        dataBaseOperator.startConnect();
+
+    }
+
+    public void closeConnection() {
+        if (dataBaseOperator != null) {
+            dataBaseOperator.closeConnection(); // Custom method to close the connection
+        }
     }
 
 

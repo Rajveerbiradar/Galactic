@@ -13,18 +13,18 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1240.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.galactic.originalgalactic.DataViewer">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1240.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.galactic.originalgalactic.DepartmentDataController">
    <children>
-      <Label prefHeight="88.0" prefWidth="187.0" text="Galactic">
+      <Label prefHeight="60.0" prefWidth="215.0" text="Galactic.">
          <font>
-            <Font name="Montserrat-Regular" size="48.0" />
+            <Font name="Montserrat SemiBold" size="48.0" />
          </font>
          <textFill>
             <LinearGradient endX="1.0" endY="1.0">
                <stops>
                   <Stop>
                      <color>
-                        <Color />
+                        <Color red="0.43921568989753723" blue="1.0" />
                      </color>
                   </Stop>
                   <Stop offset="0.006729475100942127">
@@ -34,7 +34,7 @@
                   </Stop>
                   <Stop offset="1.0">
                      <color>
-                        <Color />
+                        <Color red="0.1666666716337204" blue="0.4000000059604645" />
                      </color>
                   </Stop>
                </stops>
@@ -68,25 +68,25 @@
          <children>
             <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="100.0" spacing="16.0" styleClass="menuBar">
                <children>
-                  <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="56.0" prefWidth="80.0" styleClass="iconContainer">
+                  <VBox fx:id="homeView" accessibleRole="BUTTON" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="56.0" prefWidth="80.0" styleClass="iconContainer">
                      <children>
                         <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@icons/filled_home.png" />
+                              <Image url="@icons/lined_home.png" />
                            </image>
                         </ImageView>
                      </children>
                   </VBox>
-                  <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="56.0" prefWidth="80.0" styleClass="iconContainer">
+                  <VBox fx:id="classView" accessibleRole="BUTTON" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="56.0" prefWidth="80.0" styleClass="iconContainer">
                      <children>
                         <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@icons/lined_grid.png" />
+                              <Image url="@icons/filled_grid.png" />
                            </image>
                         </ImageView>
                      </children>
                   </VBox>
-                  <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="56.0" prefWidth="80.0" styleClass="iconContainer">
+                  <VBox fx:id="downloadView" accessibleRole="BUTTON" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="56.0" prefWidth="80.0" styleClass="iconContainer">
                      <children>
                         <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                            <image>

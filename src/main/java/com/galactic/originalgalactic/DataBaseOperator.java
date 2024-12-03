@@ -14,7 +14,7 @@ import java.io.IOException;
 
 
 public class DataBaseOperator {
-    public Connection connection;
+    private Connection connection;
     DataFormatter dataFormatter = new DataFormatter();
 
 
@@ -23,7 +23,7 @@ public class DataBaseOperator {
         String url = "jdbc:sqlite:" + filePath;
 
         try {
-            connection = DriverManager.getConnection(url);
+            this.connection = DriverManager.getConnection(url);
             System.out.println("Connected with the database");
         } catch(SQLException e){
             System.out.println("unable to connect");
@@ -145,6 +145,7 @@ public class DataBaseOperator {
             Statement stmt = connection.createStatement();
             stmt.execute(deleteTableSQL);
             System.out.println("Deleted Table " + tableName);
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -164,17 +165,5 @@ public class DataBaseOperator {
 }
 
 
-class Temporary{
-    public static void main(String[] args){
-        DataBaseOperator d = new DataBaseOperator();
-        Connection hello = d.startConnect();
 
-        d.excelToDataBase();
-//        ase();
-
-//        d.deleteTable();
-        d.closeConnection();
-
-    }
-}
 

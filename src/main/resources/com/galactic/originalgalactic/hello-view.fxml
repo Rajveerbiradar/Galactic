@@ -12,20 +12,20 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1240.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.galactic.originalgalactic.HelloController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1240.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.galactic.originalgalactic.HomeController">
 
 
    <children>
-      <Label text="Galactic" >
+      <Label prefHeight="60.0" prefWidth="215.0" text="Galactic.">
          <font>
-            <Font name="Arial Bold" size="48.0" />
+            <Font name="Montserrat SemiBold" size="48.0" />
          </font>
          <textFill>
             <LinearGradient endX="1.0" endY="1.0">
                <stops>
                   <Stop>
                      <color>
-                        <Color />
+                        <Color red="0.43921568989753723" blue="1.0" />
                      </color>
                   </Stop>
                   <Stop offset="0.006729475100942127">
@@ -35,7 +35,7 @@
                   </Stop>
                   <Stop offset="1.0">
                      <color>
-                        <Color />
+                        <Color red="0.1666666716337204" blue="0.4000000059604645" />
                      </color>
                   </Stop>
                </stops>
@@ -44,19 +44,22 @@
       </Label>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="32.0" VBox.vgrow="ALWAYS">
          <children>
-            <AnchorPane accessibleRole="BUTTON" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="160.0" prefWidth="274.0" style="-fx-background-position: 0;" styleClass="gradient_button" fx:id="imageButton">
+            <AnchorPane fx:id="imageButton" accessibleRole="BUTTON" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="160.0" prefWidth="274.0" style="-fx-background-position: 0;" styleClass="gradient_button">
                <children>
                   <VBox layoutX="24.0" layoutY="203.00000000000003" AnchorPane.bottomAnchor="28.0" AnchorPane.leftAnchor="28.0">
                      <children>
                         <Label text="SCAN ID" textFill="WHITE">
                            <font>
-                              <Font name="System Bold" size="24.0" />
+                              <Font name="Montserrat Bold" size="24.0" />
                            </font>
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
                         </Label>
-                        <Label text="Mark attendence by scannig your ID" textFill="WHITE" />
+                        <Label text="Mark attendence by scannig your ID" textFill="WHITE">
+                           <font>
+                              <Font name="Montserrat Regular" size="12.0" />
+                           </font></Label>
                      </children>
                   </VBox>
                </children>
@@ -64,7 +67,7 @@
                   <Insets left="36.0" />
                </HBox.margin>
             </AnchorPane>
-            <AnchorPane accessibleRole="BUTTON" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#onHelloButtonClick" prefHeight="160.0" prefWidth="274.0" styleClass="plain_button" >
+            <AnchorPane accessibleRole="BUTTON" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#onHelloButtonClick" prefHeight="160.0" prefWidth="274.0" styleClass="plain_button">
                <children>
                   <VBox layoutX="21.0" layoutY="101.0" AnchorPane.bottomAnchor="28.0" AnchorPane.leftAnchor="28.0">
                      <children>
@@ -76,7 +79,10 @@
                               <Insets />
                            </VBox.margin>
                         </Label>
-                        <Label text="Make Your temporary ID." textFill="WHITE" />
+                        <Label text="Make Your temporary ID." textFill="WHITE">
+                           <font>
+                              <Font name="Montserrat Regular" size="12.0" />
+                           </font></Label>
                      </children>
                   </VBox>
                </children>
@@ -87,7 +93,7 @@
          <children>
             <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="100.0" spacing="16.0" styleClass="menuBar">
                <children>
-                  <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="56.0" prefWidth="80.0" styleClass="iconContainer">
+                  <VBox fx:id="homeView" accessibleRole="BUTTON" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="56.0" prefWidth="80.0" styleClass="iconContainer">
                      <children>
                         <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -96,7 +102,7 @@
                         </ImageView>
                      </children>
                   </VBox>
-                  <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="56.0" prefWidth="80.0" styleClass="iconContainer">
+                  <VBox fx:id="classView" accessibleRole="BUTTON" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="56.0" prefWidth="80.0" styleClass="iconContainer">
                      <children>
                         <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -105,7 +111,7 @@
                         </ImageView>
                      </children>
                   </VBox>
-                  <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="56.0" prefWidth="80.0" styleClass="iconContainer">
+                  <VBox fx:id="downloadView" accessibleRole="BUTTON" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="56.0" prefWidth="80.0" styleClass="iconContainer">
                      <children>
                         <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -133,17 +139,17 @@
                      <children>
                         <Label fx:id="theDate" text="Date" textFill="WHITE">
                            <font>
-                              <Font size="16.0" />
+                              <Font name="Montserrat SemiBold" size="20.0" />
                            </font>
                         </Label>
                         <Label fx:id="theTime" text="HH:MM " textFill="WHITE">
                            <font>
-                              <Font size="24.0" />
+                              <Font name="Montserrat SemiBold" size="32.0" />
                            </font>
                         </Label>
                      </children>
                      <padding>
-                        <Insets bottom="8.0" left="40.0" right="40.0" top="16.0" />
+                        <Insets bottom="16.0" left="40.0" right="40.0" top="16.0" />
                      </padding>
                   </VBox>
                </children>
