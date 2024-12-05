@@ -1,5 +1,7 @@
 package com.galactic.originalgalactic;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -11,6 +13,7 @@ import javafx.scene.control.Label;
 // The DOM API helps you work with XML or HTML documents by turning them into a tree-like structure (called a Document Object Model) so you can read, add, change, or remove parts of the document.
 // the `org.w3c.dom` API supports any markup language that follows the basic rules of XML structure
 // As long as the markup language is valid XML, the DOM API can parse and manipulate it.
+import javafx.util.Duration;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -28,6 +31,8 @@ import org.xml.sax.SAXException; // SAX (Simple API for XML) it is required whil
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class DepartmentDataController {
 
@@ -79,7 +84,7 @@ public class DepartmentDataController {
                 DD_Button.getStyleClass().add("DD_Button");
                 DD_Button.setAlignment(Pos.CENTER);
                 Label buttonText = new Label("Edit");
-                buttonText.setStyle("-fx-font-size: 24; ");
+                buttonText.getStyleClass().add("DD_Button_Text");
                 DD_Button.getChildren().add(buttonText);
 
                 // adding info to the First Inner Vbox (infoBox)
@@ -183,8 +188,43 @@ public class DepartmentDataController {
         }
     }
 
+
+
+    @FXML
+    private VBox homeView;
+
+    public void goToHomeView(){
+        Application.loadScene("Home-View.fxml");
+    }
+
+    public void goToDownloadView(){
+        Application.loadScene("Download-view.fxml");
+    }
+
+    @FXML
+    private Label theDate;
+
+    @FXML
+    private Label theTime;
+
     @FXML
     public void initialize(){
         showDepartment();
+
+        Timeline clock = new Timeline(new KeyFrame(Duration.seconds(1), e -> { // Set up Timeline for real-time updates
+            LocalDateTime now = LocalDateTime.now();
+
+            // Update Date
+            DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("EEEE");
+            theDate.setText(now.format(dateFormatter));
+
+            // Update Time
+            DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+            theTime.setText(now.format(timeFormatter));
+        }));
+
+        clock.setCycleCount(Timeline.INDEFINITE);
+        clock.play();
+
     }
 }

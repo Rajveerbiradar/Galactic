@@ -1,43 +1,57 @@
 package com.galactic.originalgalactic;
 
-import javafx.application.Application;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.layout.StackPane;
-import javafx.scene.Scene;
+import javafx.application.Platform;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import org.opencv.core.Mat;
+import org.opencv.objdetect.QRCodeDetector;
+import org.opencv.videoio.VideoCapture;
 
-public class Tester extends Application {
+public class Tester {
+    @FXML
+    private Button scanIDButton;
 
-    @Override
-    public void start(Stage primaryStage) {
-        // Example with a try-catch block
-        try {
-            // Simulating an error (replace this with your code)
-            int result = 10 / 0; // This will cause an exception
-        } catch (Exception e) {
-            // Show error popup
-            showErrorPopup("Oops! Something went wrong: " + e.getMessage());
+    private final VideoCapture camera = CameraUtil.getInstance().getCamera();
+    private final CameraUtil cameraUtil = CameraUtil.getInstance();
+    private volatile boolean scanning = false;
+    QRCodeDetector qrCodeDetector = new QRCodeDetector();
+
+    @FXML
+    public void onScanIDButtonClicked() {
+        if (!scanning) {
+            scanning = true;
+            cameraUtil.showCameraWindow(); // Show the camera window
+            startQRCodeDetection();       // Start detecting QR codes
         }
-
-        StackPane root = new StackPane();
-        Scene scene = new Scene(root, 400, 300);
-
-        primaryStage.setTitle("Galactic Application");
-        primaryStage.setScene(scene);
-        primaryStage.show();
     }
 
-    // Method to show the error popup
-    private void showErrorPopup(String errorMessage) {
-        Alert alert = new Alert(AlertType.ERROR);
-        alert.setTitle("Error Detected");
-        alert.setHeaderText("An Error Occurred!");
-        alert.setContentText(errorMessage);
-        alert.showAndWait(); // Shows the alert and waits for the user to close it
+    private void startQRCodeDetection() {
+        new Thread(() -> {
+            Mat frame = new Mat();
+            while (scanning && camera.isOpened()) {
+                if (camera.read(frame)) {
+                    String qrCodeData = qrCodeDetector.detectAndDecode(frame);
+                    if (qrCodeData != null && !qrCodeData.isEmpty()) {
+                        scanning = false; // Stop scanning once QR is detected
+                        System.out.println("QR Code Detected: " + qrCodeData);
+
+                        Platform.runLater(() -> {
+                            cameraUtil.closeCameraWindow(); // Hide the camera
+                            handleQRCodeData(qrCodeData);   // Process the QR code
+                        });
+                    }
+                }
+            }
+        }).start();
     }
 
-    public static void main(String[] args) {
-        launch(args);
+
+
+    private void handleQRCodeData(String qrCodeData) {
+        // Process the QR code data
+        System.out.println("Processing QR Code: " + qrCodeData);
+
+        // Add logic to update the database, show an alert, etc.
     }
 }

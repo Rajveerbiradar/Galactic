@@ -1,9 +1,15 @@
 package com.galactic.originalgalactic;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.util.Duration;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class HomeController {
 
@@ -16,17 +22,44 @@ public class HomeController {
     @FXML
     private AnchorPane imageButton;
 
-    public void onHelloButtonClick(){
-        theDate.setText("Hello world");
+    private VideoController videoController;
+
+    public HomeController() {
+        videoController = new VideoController();
     }
 
-//     This method is called after the FXML elements are loaded
+    @FXML
+    public void onScanIDButtonClicked() throws Exception {
 
-    DataBaseOperator dataBaseOperator;
+        try {
+            videoController.onScanIDButtonClicked();
+        }catch (Exception e) {
+            ErrorPopupUtil.showError(e.getMessage()); // Show the error in the popup
+        }
+
+          // This triggers the camera view to appear
+    }
+
+    public void onHelloButtonClick() throws Exception {
+        try {
+            // Your logic here (e.g., scanning QR code)
+            throw new Exception("Invalid QR data!"); // Simulating an error
+        }catch (Exception e) {
+            ErrorPopupUtil.showError(e.getMessage()); // Show the error in the popup
+        }
+    }
+
+    public void goToDataControlView(){
+        Application.loadScene("DataControlView.fxml");
+    }
+
+    public void goToDownloadView(){
+        Application.loadScene("Download-view.fxml");
+    }
 
     @FXML
     public void initialize() {
-        // Create a rectangle with rounded corners
+        // Rounding corners
         Rectangle rect = new Rectangle(274, 160); // Width and height of the clipping area
         rect.setArcWidth(60);  // Set rounded corner width
         rect.setArcHeight(60); // Set rounded corner height
@@ -35,16 +68,26 @@ public class HomeController {
 
         imageButton.setClip(rect);
 
-        dataBaseOperator = new DataBaseOperator();
-        dataBaseOperator.startConnect();
+        // Day and Time
+        Timeline clock = new Timeline(new KeyFrame(Duration.seconds(1), e -> { // Set up Timeline for real-time updates
+            LocalDateTime now = LocalDateTime.now();
+
+            // Update Date
+            DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("EEEE");
+            theDate.setText(now.format(dateFormatter));
+
+            // Update Time
+            DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+            theTime.setText(now.format(timeFormatter));
+        }));
+        clock.setCycleCount(Timeline.INDEFINITE);
+        clock.play();
+
+        // Camera
+
 
     }
 
-    public void closeConnection() {
-        if (dataBaseOperator != null) {
-            dataBaseOperator.closeConnection(); // Custom method to close the connection
-        }
-    }
 
 
 }

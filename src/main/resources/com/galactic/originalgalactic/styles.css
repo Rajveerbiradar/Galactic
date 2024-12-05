@@ -97,6 +97,17 @@
     -fx-border-radius: 0px 0px 36px 36px;
 }
 
+.DD_Button_Text{
+    -fx-font-size: 24;
+}
+
+.DD_Button_Text:pressed{
+    -fx-scale-y: 0.98;
+    -fx-scale-x: 0.98;
+    -fx-translate-y: -0.5px; /* Move up by 10px */
+    -fx-transition: -fx-translate-y 0.5s ease-in-out;
+}
+
 .addDepartment{
     -fx-background-color: #808080;
     -fx-background-radius: 36px;
@@ -179,4 +190,16 @@
     -fx-scale-x: 0.98;
     -fx-translate-y: -0.5px; /* Move up by 10px */
     -fx-transition: -fx-translate-y 0.5s ease-in-out;
+}
+
+.popup_Correct_message{
+    -fx-background-color: #5FA777;
+}
+.popup_Button{
+    -fx-background-color: #040404;
+}
+
+
+.popup_Error_message{
+    -fx-background-color: #EC605E;
 }
