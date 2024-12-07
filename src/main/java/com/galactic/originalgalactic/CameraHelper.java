@@ -134,9 +134,10 @@ public class CameraHelper {
                     if (!qrData.isEmpty()) {
                         handleQRCodeData(qrData);
                         Platform.runLater(() -> {
-                            running = false;
                             cameraStage.hide();
                         });
+                            running = false;
+
                     }
                 }
                 frameCopy.release();
