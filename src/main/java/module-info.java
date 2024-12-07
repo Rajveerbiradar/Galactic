@@ -5,6 +5,7 @@ module com.galactic.originalgalactic {
     requires org.apache.poi.poi;
     requires org.apache.poi.ooxml;
     requires opencv;
+    requires java.desktop;
 //    requires org.apache.commons.collections4;
 
 

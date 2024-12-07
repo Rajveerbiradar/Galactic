@@ -3,10 +3,15 @@ package com.galactic.originalgalactic;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import javafx.util.Duration;
+import nu.pattern.OpenCV;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -22,19 +27,34 @@ public class HomeController {
     @FXML
     private AnchorPane imageButton;
 
-    private VideoController videoController;
-
-    public HomeController() {
-        videoController = new VideoController();
+    static {
+        OpenCV.loadLocally();
+        System.out.println("hello world - .dll file (locally) load");
     }
 
     @FXML
     public void onScanIDButtonClicked() throws Exception {
 
+
+
         try {
-            videoController.onScanIDButtonClicked();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Camera-view.fxml"));
+            Parent root = loader.load();
+            CameraController controller = loader.getController();
+
+            Stage cameraStage = new Stage();
+            controller.setStage(cameraStage);
+
+
+            cameraStage.setScene(new Scene(root));
+            cameraStage.setTitle("Camera Window");
+
+
+            cameraStage.setOnCloseRequest(e -> cameraStage.hide()); // Stop the camera on close
+            cameraStage.show();
         }catch (Exception e) {
-            ErrorPopupUtil.showError(e.getMessage()); // Show the error in the popup
+            //ErrorPopupUtil.showError(e.getMessage()); // Show the error in the popup
+            System.out.println(e);
         }
 
           // This triggers the camera view to appear

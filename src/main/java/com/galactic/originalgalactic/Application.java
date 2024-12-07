@@ -12,8 +12,9 @@ public class Application extends javafx.application.Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        // Initialize camera before UI loads
-        CameraUtil.getInstance().initializeCamera();
+
+        System.out.println(Runtime.getRuntime().availableProcessors());
+
 
         primaryStage = stage;
         FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("Home-view.fxml"));
@@ -25,6 +26,7 @@ public class Application extends javafx.application.Application {
 
     public static void loadScene(String fxmlFile) {
         try {
+
             // Load the new scene
             FXMLLoader loader = new FXMLLoader(Application.class.getResource(fxmlFile));
             Parent root = loader.load();

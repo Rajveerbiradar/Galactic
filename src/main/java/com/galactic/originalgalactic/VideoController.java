@@ -5,101 +5,98 @@ import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import nu.pattern.OpenCV;
+import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfByte;
 import org.opencv.imgcodecs.Imgcodecs;
-import org.opencv.imgproc.Imgproc;
 import org.opencv.objdetect.QRCodeDetector;
 import org.opencv.videoio.VideoCapture;
 
 import java.io.ByteArrayInputStream;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class VideoController {
 
     static {
         OpenCV.loadLocally();
-        System.out.println("hello world");
+        System.out.println("hello world - VideoController initialized");
     }
 
-    private final VideoCapture camera = CameraUtil.getInstance().getCamera();
-    private final CameraUtil cameraUtil = CameraUtil.getInstance();
+    private QRCodeDetector qrCodeDetector = new QRCodeDetector();
     private volatile boolean scanning = false;
-    QRCodeDetector qrCodeDetector = new QRCodeDetector();
-
+    private volatile boolean detecting = false;
 
     @FXML
     private ImageView imageView;
 
-    private ExecutorService executorService;
-    private volatile boolean running = false;
+    public void initialize() {
+        // Intentionally left blank; Camera is controlled by CameraUtil
+    }
+
+    public Image matToImage(Mat frame) {
+        MatOfByte buffer = new MatOfByte();
+        Imgcodecs.imencode(".png", frame, buffer);
+        return new Image(new ByteArrayInputStream(buffer.toArray()));
+    }
 
     public void startCameraFeed(VideoCapture camera) {
-        if (running) return;
-
-        running = true;
-        executorService = Executors.newSingleThreadExecutor();
-
-        executorService.submit(() -> {
+        scanning = true;
+        Runnable frameGrabber = () -> {
             Mat frame = new Mat();
-            while (running && camera.isOpened()) {
+            while (scanning && camera.isOpened()) {
                 if (camera.read(frame)) {
+                    Core.flip(frame, frame, 1); // Flip the frame for better display
                     Image image = matToImage(frame);
                     Platform.runLater(() -> imageView.setImage(image));
                 }
             }
-        });
+        };
+
+        Thread cameraThread = new Thread(frameGrabber);
+        cameraThread.setDaemon(true);
+        cameraThread.start();
     }
 
     public void stopCameraFeed() {
-        running = false;
-        if (executorService != null) {
-            executorService.shutdownNow();
-        }
+        scanning = false;
     }
 
-    public Image matToImage(Mat frame){
-        MatOfByte buffer = new MatOfByte();
-        Imgcodecs.imencode(".png",frame, buffer);
-        return new Image(new ByteArrayInputStream(buffer.toArray()));
-    }
+    public void startQRCodeDetection(VideoCapture camera) {
+        if (detecting || !camera.isOpened()) return;
 
-
-    public void onScanIDButtonClicked() {
-        if (!scanning) {
-            scanning = true;
-            cameraUtil.showCameraWindow(); // Show the camera window
-            startQRCodeDetection();       // Start detecting QR codes
-        }
-    }
-
-    private void startQRCodeDetection() {
-        new Thread(() -> {
+        detecting = true;
+        Runnable qrDetection = () -> {
             Mat frame = new Mat();
-            while (scanning && camera.isOpened()) {
+            while (detecting && camera.isOpened()) {
                 if (camera.read(frame)) {
                     String qrCodeData = qrCodeDetector.detectAndDecode(frame);
                     if (qrCodeData != null && !qrCodeData.isEmpty()) {
-                        scanning = false; // Stop scanning once QR is detected
+                        detecting = false; // Stop detection once QR code is found
                         System.out.println("QR Code Detected: " + qrCodeData);
 
-                        Platform.runLater(() -> {
-                            cameraUtil.closeCameraWindow(); // Hide the camera
-                            handleQRCodeData(qrCodeData);   // Process the QR code
-                        });
+                        Platform.runLater(() -> handleQRCodeData(qrCodeData));
+                        break;
                     }
                 }
             }
-        }).start();
+        };
+
+        Thread detectionThread = new Thread(qrDetection);
+        detectionThread.setDaemon(true);
+        detectionThread.start();
     }
-
-
 
     private void handleQRCodeData(String qrCodeData) {
         // Process the QR code data
         System.out.println("Processing QR Code: " + qrCodeData);
 
-        // Add logic to update the database, show an alert, etc.
+        // Close the camera window and stop feed
+        CameraUtil.getInstance().closeCameraWindow();
     }
+
+    public void onScanIDButtonClicked() {
+
+
+    }
+
+
 }
