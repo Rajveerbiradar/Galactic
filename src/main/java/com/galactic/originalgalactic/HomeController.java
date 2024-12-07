@@ -18,6 +18,8 @@ import java.time.format.DateTimeFormatter;
 
 public class HomeController {
 
+    CameraHelper cameraHelper;
+
     @FXML
     private Label theDate;
 
@@ -27,35 +29,14 @@ public class HomeController {
     @FXML
     private AnchorPane imageButton;
 
-    static {
-        OpenCV.loadLocally();
-        System.out.println("hello world - .dll file (locally) load");
-    }
+
 
     @FXML
     public void onScanIDButtonClicked() throws Exception {
 
+        cameraHelper.startQRDetectionThread();
 
 
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Camera-view.fxml"));
-            Parent root = loader.load();
-            CameraController controller = loader.getController();
-
-            Stage cameraStage = new Stage();
-            controller.setStage(cameraStage);
-
-
-            cameraStage.setScene(new Scene(root));
-            cameraStage.setTitle("Camera Window");
-
-
-            cameraStage.setOnCloseRequest(e -> cameraStage.hide()); // Stop the camera on close
-            cameraStage.show();
-        }catch (Exception e) {
-            //ErrorPopupUtil.showError(e.getMessage()); // Show the error in the popup
-            System.out.println(e);
-        }
 
           // This triggers the camera view to appear
     }
@@ -104,7 +85,7 @@ public class HomeController {
         clock.play();
 
         // Camera
-
+        cameraHelper = CameraHelper.getInstance();
 
     }
 
